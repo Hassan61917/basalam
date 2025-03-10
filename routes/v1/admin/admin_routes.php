@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\v1\Admin\AdminBanController;
 use App\Http\Controllers\Api\v1\Admin\AdminCategoryController;
 use App\Http\Controllers\Api\v1\Admin\AdminCityController;
 use App\Http\Controllers\Api\v1\Admin\AdminRoleController;
+use App\Http\Controllers\Api\v1\Admin\AdminShopController;
 use App\Http\Controllers\Api\v1\Admin\AdminStateController;
 use App\Http\Controllers\Api\v1\Admin\AdminUserController;
 use App\Http\Controllers\Api\v1\Admin\AdminWalletController;
@@ -34,3 +35,7 @@ Route::prefix("wallets/{wallet}")->name("wallets.")->group(function () {
 Route::apiResource("wallet-transactions", AdminWalletTransactionController::class)->except(["store", "update"]);
 
 Route::apiResource("categories", AdminCategoryController::class);
+
+Route::apiResource("shops",AdminShopController::class)->except(["store"]);
+Route::post("shops/{shop}/suspend", [AdminShopController::class, "suspend"])->name("shops.suspend");
+Route::post("shops/{shop}/unsuspend", [AdminShopController::class, "unsuspend"])->name("shops.unsuspend");
