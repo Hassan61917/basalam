@@ -9,7 +9,7 @@ class AuthUserController extends Controller
 {
     use CheckOwner;
 
-    public function before(Model $model): void
+    public function before(?Model $model): void
     {
         $this->isOwner($model);
     }

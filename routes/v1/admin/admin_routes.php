@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\v1\Admin\AdminBanController;
 use App\Http\Controllers\Api\v1\Admin\AdminCategoryController;
 use App\Http\Controllers\Api\v1\Admin\AdminCityController;
+use App\Http\Controllers\Api\v1\Admin\AdminProductController;
 use App\Http\Controllers\Api\v1\Admin\AdminRoleController;
 use App\Http\Controllers\Api\v1\Admin\AdminShopController;
 use App\Http\Controllers\Api\v1\Admin\AdminStateController;
@@ -39,3 +40,7 @@ Route::apiResource("categories", AdminCategoryController::class);
 Route::apiResource("shops",AdminShopController::class)->except(["store"]);
 Route::post("shops/{shop}/suspend", [AdminShopController::class, "suspend"])->name("shops.suspend");
 Route::post("shops/{shop}/unsuspend", [AdminShopController::class, "unsuspend"])->name("shops.unsuspend");
+
+Route::apiResource("/products", AdminProductController::class);
+Route::post("/products/{product}/visible", [AdminProductController::class, "visible"])->name("products.visible");
+Route::post("/products/{product}/hide", [AdminProductController::class, "hide"])->name("products.hide");

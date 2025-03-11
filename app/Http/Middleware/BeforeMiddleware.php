@@ -20,8 +20,12 @@ class BeforeMiddleware
     {
         $params = $request->route()->parameters();
         $controller = $request->route()->getControllerClass();
-        if (count($params) > 0 && $instance = $this->getInstance($controller)) {
-            $params = $this->getParameters($instance, reset($params));
+        if ($instance = $this->getInstance($controller)) {
+            if (count($params) > 0){
+                $params = $this->getParameters($instance, reset($params));
+            }else{
+                $params = [null];
+            }
             $instance->before(...$params);
         }
         return $next($request);
