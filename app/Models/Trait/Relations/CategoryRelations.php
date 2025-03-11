@@ -3,6 +3,7 @@
 namespace App\Models\Trait\Relations;
 
 use App\Models\Category;
+use App\Models\Discount;
 use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,5 +29,9 @@ trait CategoryRelations
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+    public function discounts(): HasMany
+    {
+        return $this->hasMany(Discount::class);
     }
 }

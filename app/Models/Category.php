@@ -23,6 +23,9 @@ class Category extends AppModel
 
     public function isMyChild(Category $category): bool
     {
+        if ($this->id == $category->id) {
+            return true;
+        }
         $queue = [$this->children()];
         while (!empty($queue)) {
             $current = array_shift($queue);

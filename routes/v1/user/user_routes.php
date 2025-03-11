@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\v1\Client\ClientDiscountController;
+use App\Http\Controllers\Api\v1\User\UserDiscountController;
 use App\Http\Controllers\Api\v1\User\UserProductController;
 use App\Http\Controllers\Api\v1\User\UserProfileController;
 use App\Http\Controllers\Api\v1\User\UserShopController;
@@ -22,6 +24,7 @@ Route::prefix("shop")->name("shop.")->group(function () {
     Route::post("/", [UserShopController::class, "store"])->name("store");
     Route::put("/", [UserShopController::class, "update"])->name("update");
     Route::delete("/", [UserShopController::class, "destroy"])->name("destroy");
+    Route::apiResource("/discounts", UserDiscountController::class);
 });
 
 Route::apiResource("/products", UserProductController::class);
@@ -29,3 +32,8 @@ Route::post("/products/{product}/available", [UserProductController::class, "ava
 Route::post("/products/{product}/unavailable", [UserProductController::class, "unavailable"])->name("products.unavailable");
 Route::post("/products/{product}/add-option", [UserProductController::class, "addOption"])->name("products.add-option");
 Route::post("/products/{product}/remove-option", [UserProductController::class, "removeOption"])->name("products.remove-option");
+
+Route::get("used-discounts", [ClientDiscountController::class, "used"])->name("discounts.used");
+Route::get("discounts", [ClientDiscountController::class, "index"])->name("discounts.index");
+Route::get("discounts/{discount}", [ClientDiscountController::class, "show"])->name("discounts.show");
+
