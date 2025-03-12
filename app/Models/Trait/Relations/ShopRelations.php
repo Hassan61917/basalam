@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Discount;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\Question;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -35,5 +36,10 @@ trait ShopRelations
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function questions(): HasMany
+    {
+        return $this->hasMany(Question::class);
     }
 }

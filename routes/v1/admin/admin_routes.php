@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\v1\Admin\AdminCityController;
 use App\Http\Controllers\Api\v1\Admin\AdminCommissionController;
 use App\Http\Controllers\Api\v1\Admin\AdminDiscountController;
 use App\Http\Controllers\Api\v1\Admin\AdminProductController;
+use App\Http\Controllers\Api\v1\Admin\AdminQuestionController;
 use App\Http\Controllers\Api\v1\Admin\AdminReviewController;
 use App\Http\Controllers\Api\v1\Admin\AdminRoleController;
 use App\Http\Controllers\Api\v1\Admin\AdminShopController;
@@ -53,3 +54,5 @@ Route::apiResource("discounts", AdminDiscountController::class);
 Route::apiResource("commissions", AdminCommissionController::class);
 
 Route::apiResource("reviews", AdminReviewController::class)->except("store");
+
+Route::apiResource("questions", AdminQuestionController::class)->except("store");
