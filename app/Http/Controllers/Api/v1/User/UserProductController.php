@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1\User;
 use App\Http\Controllers\AuthUserController;
 use App\Http\Requests\v1\User\UserProductOptionRequest;
 use App\Http\Requests\v1\User\UserProductRequest;
-use App\Http\Resources\ProductResource;
+use App\Http\Resources\v1\ProductResource;
 use App\Models\Product;
 use App\ModelServices\Shop\ProductService;
 use Illuminate\Auth\Access\AuthorizationException;

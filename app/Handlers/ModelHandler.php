@@ -15,8 +15,8 @@ abstract class ModelHandler
                 $this->$rule($model, $params);
             }
             if (class_exists($rule)) {
-                $rule = app()->make($rule, $params);
-                $rule->handle($model);
+                $rule = app()->make($rule);
+                $rule->handle($model, $params);
             }
         }
     }

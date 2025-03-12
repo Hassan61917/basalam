@@ -34,8 +34,9 @@ class DiscountCreateHandler extends ModelHandler
         if ($discount->shop || $product) {
             $parentCategory = $product->category->getLastParent();
             $commission = $parentCategory->commission;
-            $limit_discount = $product->price / $commission->percent;
-            if ($discount->amount < $limit_discount ||
+            $limit_discount = $commission->getAmount($product->price);
+            if (
+                $discount->amount < $limit_discount ||
                 $discount->max_amount < $limit_discount ||
                 $discount->percent + $commission->percent > 100
             ) {
@@ -49,7 +50,8 @@ class DiscountCreateHandler extends ModelHandler
         if ($category) {
             $shopCategory = $discount->shop->category;
             $productCategory = $discount->product->category;
-            if (!$this->isCategoryValid($category, $shopCategory) ||
+            if (
+                !$this->isCategoryValid($category, $shopCategory) ||
                 !$this->isCategoryValid($category, $productCategory)
             ) {
                 throw new ModelException("category is not valid");

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\v1\Client\ClientDiscountController;
+use App\Http\Controllers\Api\v1\Client\ClientOrderController;
+use App\Http\Controllers\Api\v1\Client\ClientOrderItemController;
+use App\Http\Controllers\Api\v1\User\UseOrderController;
 use App\Http\Controllers\Api\v1\User\UserDiscountController;
 use App\Http\Controllers\Api\v1\User\UserProductController;
 use App\Http\Controllers\Api\v1\User\UserProfileController;
@@ -25,6 +28,13 @@ Route::prefix("shop")->name("shop.")->group(function () {
     Route::put("/", [UserShopController::class, "update"])->name("update");
     Route::delete("/", [UserShopController::class, "destroy"])->name("destroy");
     Route::apiResource("/discounts", UserDiscountController::class);
+    Route::prefix("orders")->name("orders.")->group(function () {
+        Route::get('/', [UseOrderController::class, "index"])->name("index");
+        Route::get("orders/{order-item}",[UseOrderController::class, "show"])->name("show");
+        Route::get("orders/{order-item}/cancel",[UseOrderController::class, "cancel"])->name("cancel");
+        Route::get("orders/{order-item}/accept",[UseOrderController::class, "accept"])->name("accept");
+        Route::get("orders/{order-item}/ship",[UseOrderController::class, "ship"])->name("ship");
+    });
 });
 
 Route::apiResource("/products", UserProductController::class);
@@ -37,3 +47,14 @@ Route::get("used-discounts", [ClientDiscountController::class, "used"])->name("d
 Route::get("discounts", [ClientDiscountController::class, "index"])->name("discounts.index");
 Route::get("discounts/{discount}", [ClientDiscountController::class, "show"])->name("discounts.show");
 
+Route::get("orders/current", [ClientOrderController::class, "current"])->name("orders.current");
+Route::apiResource("orders", ClientOrderController::class);
+Route::post("/orders/{order}/discount", [ClientOrderController::class, 'discount'])->name('order.discount');
+Route::post("/orders/{order}/pay", [ClientOrderController::class, 'pay'])->name('order.pay');
+Route::post("/orders/{order}/cancel", [ClientOrderController::class, 'cancel'])->name('order.cancel');
+Route::post("/orders/{order}/set-address", [ClientOrderController::class, 'setAddress'])->name('order.setAddress');
+
+Route::apiResource("order-items", ClientOrderItemController::class);
+Route::post("/order-items/{order_item}/next", [ClientOrderItemController::class, 'next'])->name('order-items.next');
+Route::post("/order-items/{order_item}/cancel", [ClientOrderItemController::class, 'cancel'])->name('order-items.cancel');
+Route::post("/order-items/{order_item}/complete", [ClientOrderItemController::class, 'complete'])->name('order-items.complete');

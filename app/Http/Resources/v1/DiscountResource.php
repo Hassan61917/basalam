@@ -3,7 +3,6 @@
 namespace App\Http\Resources\v1;
 
 use App\Http\Resources\AppJsonResource;
-use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 
 class DiscountResource extends AppJsonResource

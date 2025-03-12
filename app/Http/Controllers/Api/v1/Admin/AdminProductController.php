@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\User\UserProductRequest;
-use App\Http\Resources\ProductResource;
+use App\Http\Resources\v1\ProductResource;
 use App\Models\Product;
 use App\ModelServices\Shop\ProductService;
 use Illuminate\Http\JsonResponse;

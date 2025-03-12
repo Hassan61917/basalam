@@ -24,6 +24,10 @@ class Product extends AppModel
         return $builder->where("available", true);
     }
 
+    public function isAvailable(): bool
+    {
+        return $this->available && !$this->hidden;
+    }
     public function addOptions(array $options = []): void
     {
         foreach ($options as $key => $option) {

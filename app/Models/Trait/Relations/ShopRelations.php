@@ -4,6 +4,7 @@ namespace App\Models\Trait\Relations;
 
 use App\Models\Category;
 use App\Models\Discount;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,5 +30,10 @@ trait ShopRelations
     public function discounts(): HasMany
     {
         return $this->hasMany(Discount::class);
+    }
+
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

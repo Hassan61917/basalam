@@ -34,4 +34,11 @@ class Commission extends AppModel
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function getAmount(int $price): int
+    {
+        $percent = $this->percent / 100;
+        $amount = $price * $percent;
+        return min($amount,$this->max_amount);
+    }
 }

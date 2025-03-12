@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\v1;
 
-use App\Http\Resources\v1\CategoryResource;
-use App\Http\Resources\v1\ShopResource;
+use App\Http\Resources\AppJsonResource;
 use Illuminate\Http\Request;
 
 class ProductResource extends AppJsonResource
