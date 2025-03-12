@@ -6,7 +6,9 @@ use App\Http\Controllers\Api\v1\Client\ClientOrderItemController;
 use App\Http\Controllers\Api\v1\Client\ClientQuestionController;
 use App\Http\Controllers\Api\v1\Client\ClientReviewController;
 use App\Http\Controllers\Api\v1\User\UseOrderController;
+use App\Http\Controllers\Api\v1\User\UserBlockController;
 use App\Http\Controllers\Api\v1\User\UserDiscountController;
+use App\Http\Controllers\Api\v1\User\UserMessageController;
 use App\Http\Controllers\Api\v1\User\UserPageController;
 use App\Http\Controllers\Api\v1\User\UserProductController;
 use App\Http\Controllers\Api\v1\User\UserProfileController;
@@ -77,3 +79,10 @@ Route::apiResource("reviews", ClientReviewController::class);
 Route::apiResource("questions", ClientQuestionController::class);
 
 Route::apiResource("page", UserPageController::class)->only("index", "update");
+
+Route::apiResource("blocks", UserBlockController::class);
+Route::apiResource("messages", UserMessageController::class)->except("index");
+Route::get("inbox", [UserMessageController::class, "inbox"])->name("inbox");
+Route::get("outbox", [UserMessageController::class, "outbox"])->name("outbox");
+Route::get("chats", [UserMessageController::class, "chats"])->name("chats");
+Route::get("/{user}/chat", [UserMessageController::class, "chat"])->name("chat");
