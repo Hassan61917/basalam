@@ -7,6 +7,7 @@ use App\Models\Discount;
 use App\Models\ProductOption;
 use App\Models\Question;
 use App\Models\Shop;
+use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -33,5 +34,10 @@ trait ProductRelations
     public function questions(): HasMany
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function wishlist(): HasMany
+    {
+        return $this->hasMany(Wishlist::class);
     }
 }

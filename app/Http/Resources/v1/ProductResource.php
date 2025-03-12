@@ -18,6 +18,7 @@ class ProductResource extends AppJsonResource
             "hidden" => $this->hidden,
             "shop" => $this->mergeRelation(ShopResource::class, "shop"),
             "category" => $this->mergeRelation(CategoryResource::class, "category"),
+            "wishlistCount"=>$this->mergeCount("wishlist")
         ];
     }
 }

@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\v1\User\UserReviewController;
 use App\Http\Controllers\Api\v1\User\UserShopController;
 use App\Http\Controllers\Api\v1\User\UserWalletController;
 use App\Http\Controllers\Api\v1\User\UserWalletTransactionController;
+use App\Http\Controllers\Api\v1\User\UserWishlistController;
 use Illuminate\Support\Facades\Route;
 
 Route::apiResource("/profile", UserProfileController::class)->except(["show", "delete"]);
@@ -102,3 +103,5 @@ Route::post("/follow", [UserFollowController::class, "follow"])->name("follow");
 Route::post("/unfollow", [UserFollowController::class, "unfollow"])->name("unfollow");
 Route::post("/follows/{follow}/accept", [UserFollowController::class, "accept"])->name("follow.accept");
 Route::post("/follows/{follow}/reject", [UserFollowController::class, "reject"])->name("follow.reject");
+
+Route::apiResource("wishlist", UserWishlistController::class)->except("update");
