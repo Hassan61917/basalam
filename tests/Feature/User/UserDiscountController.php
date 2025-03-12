@@ -3,6 +3,7 @@
 namespace Tests\Feature\User;
 
 use App\Models\Category;
+use App\Models\Commission;
 use App\Models\Discount;
 use App\Models\Product;
 use App\Models\Shop;
@@ -49,7 +50,22 @@ class UserDiscountController extends UserTest
         $this->postJson(route("v1.user.shop.discounts.store"), $discount)
             ->assertStatus(422);
     }
+    public function test_store_should_not_store_amount_is_more_then_commission()
+    {
+        $percent = 10;
+        $price = 1000;
+        $category = Category::factory()->create();
+        Commission::factory()->for($category)->create(["percent" => $percent]);
+        $shop = $this->makeShop();
+        $product = Product::factory()->for($category)->for($shop)->create(["price" => $price]);
+        $discount = Discount::factory()
+            ->for($shop)
+            ->for($product)
+            ->raw(["percent" => (100 - $percent) + 1]);
 
+        $this->postJson(route("v1.user.shop.discounts.store"), $discount)
+            ->assertStatus(422);
+    }
     public function test_store_should_not_store_if_category_is_not_same()
     {
         $category1 = Category::factory()->create();

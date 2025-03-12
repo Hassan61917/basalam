@@ -3,11 +3,13 @@
 namespace App\Models\Trait\Relations;
 
 use App\Models\Category;
+use App\Models\Commission;
 use App\Models\Discount;
 use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 trait CategoryRelations
 {
@@ -33,5 +35,14 @@ trait CategoryRelations
     public function discounts(): HasMany
     {
         return $this->hasMany(Discount::class);
+    }
+
+    public function commissions(): HasMany
+    {
+        return $this->hasMany(Commission::class);
+    }
+    public function commission(): HasOne
+    {
+        return $this->hasOne(Commission::class)->unExpired();
     }
 }

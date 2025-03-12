@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\v1\Admin\AdminBanController;
 use App\Http\Controllers\Api\v1\Admin\AdminCategoryController;
 use App\Http\Controllers\Api\v1\Admin\AdminCityController;
+use App\Http\Controllers\Api\v1\Admin\AdminCommissionController;
 use App\Http\Controllers\Api\v1\Admin\AdminDiscountController;
 use App\Http\Controllers\Api\v1\Admin\AdminProductController;
 use App\Http\Controllers\Api\v1\Admin\AdminRoleController;
@@ -47,3 +48,5 @@ Route::post("/products/{product}/visible", [AdminProductController::class, "visi
 Route::post("/products/{product}/hide", [AdminProductController::class, "hide"])->name("products.hide");
 
 Route::apiResource("discounts", AdminDiscountController::class);
+
+Route::apiResource("commissions", AdminCommissionController::class);

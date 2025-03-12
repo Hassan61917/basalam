@@ -10,7 +10,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 
 class DiscountCreateHandler extends ModelHandler
 {
-    protected array $rules = ["shop", "product", "category"];
+    protected array $rules = ["shop", "product", "commission", "category"];
 
     public function shop(Discount $discount): void
     {
@@ -28,6 +28,21 @@ class DiscountCreateHandler extends ModelHandler
         }
     }
 
+    public function commission(Discount $discount): void
+    {
+        $product = $discount->product;
+        if ($discount->shop || $product) {
+            $parentCategory = $product->category->getLastParent();
+            $commission = $parentCategory->commission;
+            $limit_discount = $product->price / $commission->percent;
+            if ($discount->amount < $limit_discount ||
+                $discount->max_amount < $limit_discount ||
+                $discount->percent + $commission->percent > 100
+            ) {
+                throw new ModelException("discount must be less then commission rate");
+            }
+        }
+    }
     public function category(Discount $discount): void
     {
         $category = $discount->category;

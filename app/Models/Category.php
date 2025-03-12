@@ -20,6 +20,10 @@ class Category extends AppModel
     {
         return $builder->whereNull("parent_id");
     }
+    public function isMainParent(): bool
+    {
+        return !$this->parent_id;
+    }
 
     public function isMyChild(Category $category): bool
     {
