@@ -3,6 +3,7 @@
 namespace App\Models\Trait\Relations;
 
 use App\Models\Comment;
+use App\Models\Follow;
 use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
@@ -39,5 +40,21 @@ trait UserSocialRelations
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+    public function follows(): HasMany
+    {
+        return $this->hasMany(Follow::class);
+    }
+
+    public function followings(): HasMany
+    {
+        return $this->hasMany(Follow::class, "user_id")
+            ->where("accepted", true);
+    }
+
+    public function followers(): HasMany
+    {
+        return $this->hasMany(Follow::class, "follow_id")
+            ->where("accepted", true);
     }
 }

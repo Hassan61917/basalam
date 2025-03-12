@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\v1\User\UseOrderController;
 use App\Http\Controllers\Api\v1\User\UserBlockController;
 use App\Http\Controllers\Api\v1\User\UserCommentController;
 use App\Http\Controllers\Api\v1\User\UserDiscountController;
+use App\Http\Controllers\Api\v1\User\UserFollowController;
 use App\Http\Controllers\Api\v1\User\UserMessageController;
 use App\Http\Controllers\Api\v1\User\UserPageController;
 use App\Http\Controllers\Api\v1\User\UserPostController;
@@ -94,3 +95,10 @@ Route::apiResource("posts", UserPostController::class);
 Route::get("my-posts-comments", [UserCommentController::class, "postsComments"])->name("my-posts-comments");
 Route::apiResource("comments", UserCommentController::class);
 Route::post("/comments/{comment}/reply", [UserCommentController::class, "reply"])->name("comments.reply");
+
+Route::get("follow-requests", [UserFollowController::class, "index"])->name("follows.requests");
+Route::get("following-requests", [UserFollowController::class, "followingRequests"])->name("following.requests");
+Route::post("/follow", [UserFollowController::class, "follow"])->name("follow");
+Route::post("/unfollow", [UserFollowController::class, "unfollow"])->name("unfollow");
+Route::post("/follows/{follow}/accept", [UserFollowController::class, "accept"])->name("follow.accept");
+Route::post("/follows/{follow}/reject", [UserFollowController::class, "reject"])->name("follow.reject");
