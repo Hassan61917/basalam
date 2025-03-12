@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\Client\ClientQuestionController;
 use App\Http\Controllers\Api\v1\Client\ClientReviewController;
 use App\Http\Controllers\Api\v1\User\UseOrderController;
 use App\Http\Controllers\Api\v1\User\UserDiscountController;
+use App\Http\Controllers\Api\v1\User\UserPageController;
 use App\Http\Controllers\Api\v1\User\UserProductController;
 use App\Http\Controllers\Api\v1\User\UserProfileController;
 use App\Http\Controllers\Api\v1\User\UserQuestionController;
@@ -74,3 +75,5 @@ Route::post("/order-items/{order_item}/complete", [ClientOrderItemController::cl
 Route::apiResource("reviews", ClientReviewController::class);
 
 Route::apiResource("questions", ClientQuestionController::class);
+
+Route::apiResource("page", UserPageController::class)->only("index", "update");
