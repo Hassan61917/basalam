@@ -13,19 +13,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use League\Uri\Idna\Option;
 
-class UserProductController extends AuthUserController
+class UserProductController extends ShopController
 {
     protected string $resource = ProductResource::class;
     protected ?string $ownerRelation = "shop";
-
-    public function before(?Model $model): void
-    {
-        if (!$this->authUser()->shop) {
-            throw new AuthorizationException("you must be a shop owner");
-        }
-        parent::before($model);
-
-    }
 
     public function __construct(
         private ProductService $productService

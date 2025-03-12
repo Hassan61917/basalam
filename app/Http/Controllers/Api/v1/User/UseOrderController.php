@@ -10,7 +10,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 
-class UseOrderController extends AuthUserController
+class UseOrderController extends ShopController
 {
     protected string $resource = OrderItemResource::class;
     protected ?string $ownerRelation = "shop";
@@ -20,21 +20,10 @@ class UseOrderController extends AuthUserController
     )
     {
     }
-
-    public function before(?Model $model): void
-    {
-        if (!$this->authUser()->shop) {
-            throw new AuthorizationException("you must be a shop owner");
-        }
-        parent::before($model);
-
-    }
-
     public function index(): JsonResponse
     {
-        $shop = $this->authUser()->shop;
-        $bookings = $this->itemService->getItemsFor($shop);
-        return $this->ok($this->paginate($bookings));
+        $orders = $this->itemService->getItemsFor($this->authUser()->shop);
+        return $this->ok($this->paginate($orders));
     }
 
     public function show(OrderItem $item): JsonResponse
@@ -51,13 +40,13 @@ class UseOrderController extends AuthUserController
 
     public function accept(OrderItem $item): JsonResponse
     {
-        $booking = $this->itemService->confirm($item);
-        return $this->ok($booking);
+        $this->itemService->confirm($item);
+        return $this->ok($item);
     }
 
     public function ship(OrderItem $item): JsonResponse
     {
-        $booking = $this->itemService->ship($item);
-        return $this->ok($booking);
+        $this->itemService->ship($item);
+        return $this->ok($item);
     }
 }

@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1\User;
 
-use App\Http\Controllers\AuthUserController;
 use App\Http\Requests\v1\User\UserDiscountRequest;
 use App\Http\Resources\v1\DiscountResource;
 use App\Models\Discount;
 use App\ModelServices\Financial\DiscountService;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 
-class UserDiscountController extends AuthUserController
+class UserDiscountController extends ShopController
 {
     protected string $resource = DiscountResource::class;
     protected ?string $ownerRelation = "shop";
@@ -21,16 +18,6 @@ class UserDiscountController extends AuthUserController
     )
     {
     }
-
-    public function before(?Model $model): void
-    {
-        if (!$this->authUser()->shop) {
-            throw new AuthorizationException("you must be a shop owner");
-        }
-        parent::before($model);
-
-    }
-
     /**
      * Display a listing of the resource.
      */

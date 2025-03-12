@@ -3,10 +3,12 @@
 use App\Http\Controllers\Api\v1\Client\ClientDiscountController;
 use App\Http\Controllers\Api\v1\Client\ClientOrderController;
 use App\Http\Controllers\Api\v1\Client\ClientOrderItemController;
+use App\Http\Controllers\Api\v1\Client\ClientReviewController;
 use App\Http\Controllers\Api\v1\User\UseOrderController;
 use App\Http\Controllers\Api\v1\User\UserDiscountController;
 use App\Http\Controllers\Api\v1\User\UserProductController;
 use App\Http\Controllers\Api\v1\User\UserProfileController;
+use App\Http\Controllers\Api\v1\User\UserReviewController;
 use App\Http\Controllers\Api\v1\User\UserShopController;
 use App\Http\Controllers\Api\v1\User\UserWalletController;
 use App\Http\Controllers\Api\v1\User\UserWalletTransactionController;
@@ -35,6 +37,9 @@ Route::prefix("shop")->name("shop.")->group(function () {
         Route::get("orders/{order-item}/accept",[UseOrderController::class, "accept"])->name("accept");
         Route::get("orders/{order-item}/ship",[UseOrderController::class, "ship"])->name("ship");
     });
+    Route::get("/reviews", [UserReviewController::class, 'index'])->name('reviews.index');
+    Route::get("/reviews/{review}", [UserReviewController::class, 'show'])->name('reviews.show');
+    Route::get("/reviews/{review}/reply", [UserReviewController::class, 'reply'])->name('reviews.reply');
 });
 
 Route::apiResource("/products", UserProductController::class);
@@ -58,3 +63,5 @@ Route::apiResource("order-items", ClientOrderItemController::class);
 Route::post("/order-items/{order_item}/next", [ClientOrderItemController::class, 'next'])->name('order-items.next');
 Route::post("/order-items/{order_item}/cancel", [ClientOrderItemController::class, 'cancel'])->name('order-items.cancel');
 Route::post("/order-items/{order_item}/complete", [ClientOrderItemController::class, 'complete'])->name('order-items.complete');
+
+Route::apiResource("reviews", ClientReviewController::class);

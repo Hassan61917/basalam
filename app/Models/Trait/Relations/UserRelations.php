@@ -5,6 +5,7 @@ namespace App\Models\Trait\Relations;
 use App\Models\Ban;
 use App\Models\Discount;
 use App\Models\Profile;
+use App\Models\Review;
 use App\Models\Role;
 use App\Models\Shop;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -39,5 +40,10 @@ trait UserRelations
     public function discounts(): HasMany
     {
         return $this->hasMany(Discount::class);
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
     }
 }

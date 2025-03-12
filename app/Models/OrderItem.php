@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Enums\OrderItemStatus;
+use App\Models\Trait\Relations\OrderItemRelations;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OrderItem extends AppModel
 {
+    use OrderItemRelations;
     protected $with = ["product"];
     protected $fillable = [
         "user_id", "order_id", "shop_id", "product_id", "status",
@@ -29,25 +30,5 @@ class OrderItem extends AppModel
     public function scopeVisible(Builder $builder): Builder
     {
         return $builder->where("status", "!=", OrderItemStatus::Waiting->value);
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function order(): BelongsTo
-    {
-        return $this->belongsTo(Order::class);
-    }
-
-    public function shop(): BelongsTo
-    {
-        return $this->belongsTo(Shop::class);
-    }
-
-    public function product(): BelongsTo
-    {
-        return $this->belongsTo(Product::class);
     }
 }
