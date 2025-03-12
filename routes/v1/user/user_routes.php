@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\Client\ClientQuestionController;
 use App\Http\Controllers\Api\v1\Client\ClientReviewController;
 use App\Http\Controllers\Api\v1\User\UseOrderController;
 use App\Http\Controllers\Api\v1\User\UserBlockController;
+use App\Http\Controllers\Api\v1\User\UserCommentController;
 use App\Http\Controllers\Api\v1\User\UserDiscountController;
 use App\Http\Controllers\Api\v1\User\UserMessageController;
 use App\Http\Controllers\Api\v1\User\UserPageController;
@@ -89,3 +90,7 @@ Route::get("chats", [UserMessageController::class, "chats"])->name("chats");
 Route::get("/{user}/chat", [UserMessageController::class, "chat"])->name("chat");
 
 Route::apiResource("posts", UserPostController::class);
+
+Route::get("my-posts-comments", [UserCommentController::class, "postsComments"])->name("my-posts-comments");
+Route::apiResource("comments", UserCommentController::class);
+Route::post("/comments/{comment}/reply", [UserCommentController::class, "reply"])->name("comments.reply");

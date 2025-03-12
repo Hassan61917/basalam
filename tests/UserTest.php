@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Models\Page;
 use App\Models\Profile;
 use App\Models\Role;
 use App\Models\User;
@@ -36,6 +37,7 @@ abstract class UserTest extends TestCase
         $user->roles()->save($this->makeRole($role));
         $user->profile()->create(Profile::factory()->raw());
         $user->wallet()->create();
+        $user->page()->create(Page::factory()->raw());
         return $user;
     }
 

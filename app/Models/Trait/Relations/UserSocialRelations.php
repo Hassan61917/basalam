@@ -2,6 +2,7 @@
 
 namespace App\Models\Trait\Relations;
 
+use App\Models\Comment;
 use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
@@ -33,5 +34,10 @@ trait UserSocialRelations
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }

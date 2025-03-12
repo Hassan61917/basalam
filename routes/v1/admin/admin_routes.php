@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\v1\Admin\AdminBanController;
 use App\Http\Controllers\Api\v1\Admin\AdminCategoryController;
 use App\Http\Controllers\Api\v1\Admin\AdminCityController;
+use App\Http\Controllers\Api\v1\Admin\AdminCommentController;
 use App\Http\Controllers\Api\v1\Admin\AdminCommissionController;
 use App\Http\Controllers\Api\v1\Admin\AdminDiscountController;
 use App\Http\Controllers\Api\v1\Admin\AdminMessageController;
@@ -62,3 +63,5 @@ Route::apiResource("questions", AdminQuestionController::class)->except("store")
 Route::apiResource("messages", AdminMessageController::class)->except("store");
 
 Route::apiResource("posts", AdminPostController::class);
+
+Route::apiResource("comments", AdminCommentController::class);
