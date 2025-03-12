@@ -4,6 +4,7 @@ namespace App\Models\Trait\Relations;
 
 use App\Models\Message;
 use App\Models\Page;
+use App\Models\Post;
 use App\Models\UserBlock;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -27,5 +28,10 @@ trait UserSocialRelations
     public function blocks(): HasMany
     {
         return $this->hasMany(UserBlock::class);
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 }

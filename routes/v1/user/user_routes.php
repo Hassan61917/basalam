@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\v1\User\UserBlockController;
 use App\Http\Controllers\Api\v1\User\UserDiscountController;
 use App\Http\Controllers\Api\v1\User\UserMessageController;
 use App\Http\Controllers\Api\v1\User\UserPageController;
+use App\Http\Controllers\Api\v1\User\UserPostController;
 use App\Http\Controllers\Api\v1\User\UserProductController;
 use App\Http\Controllers\Api\v1\User\UserProfileController;
 use App\Http\Controllers\Api\v1\User\UserQuestionController;
@@ -86,3 +87,5 @@ Route::get("inbox", [UserMessageController::class, "inbox"])->name("inbox");
 Route::get("outbox", [UserMessageController::class, "outbox"])->name("outbox");
 Route::get("chats", [UserMessageController::class, "chats"])->name("chats");
 Route::get("/{user}/chat", [UserMessageController::class, "chat"])->name("chat");
+
+Route::apiResource("posts", UserPostController::class);
