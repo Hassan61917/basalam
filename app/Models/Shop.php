@@ -26,7 +26,10 @@ class Shop extends AppModel
     {
         return $builder->where("status","!=", ShopStatus::Draft->value);
     }
-
+    public function scopeAvailable(Builder $builder): Builder
+    {
+        return $builder->whereIn("status",[ShopStatus::Opened->value,ShopStatus::InProcess->value]);
+    }
     public function scopeIsOpen(Builder $builder): Builder
     {
         return $builder->where('status', ShopStatus::Opened->value);

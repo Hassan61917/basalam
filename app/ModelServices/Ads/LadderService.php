@@ -4,7 +4,6 @@ namespace App\ModelServices\Ads;
 
 use App\Enums\ShowStatus;
 use App\Events\LadderWasOrdered;
-use App\Exceptions\ModelException;
 use App\Handlers\LadderOrder\LadderOrderHandler;
 use App\Models\Ladder;
 use App\Models\LadderOrder;
@@ -25,6 +24,17 @@ class LadderService
     {
     }
 
+    public function getAvailableShop(): Builder
+    {
+        return Shop::query()
+            ->select("shops.*")
+            ->leftJoin("ladder_orders", "ladder_orders.shop_id", "=", "shops.id")
+            ->where(function ($query) {
+                return $query
+                    ->where("ladder_orders.status", ShowStatus::Showing->value)
+                    ->orWhere(fn($query) => $query->available());
+            })->orderBy("ladder_orders.show_at", "desc");
+    }
     public function getLadders(array $relations = []): Builder
     {
         return Ladder::query()->with($relations);

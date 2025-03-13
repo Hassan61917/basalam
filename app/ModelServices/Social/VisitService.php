@@ -23,7 +23,7 @@ class VisitService
         return $user->visits()->with($relations);
     }
 
-    public function modelVisits(Model $model, array $relations = [])
+    public function modelVisits(Visitable $model, array $relations = [])
     {
         return $model->visits()->with($relations);
     }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api\v1\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\v1\VisitResource;
 use App\Models\Visit;
 use App\ModelServices\Social\VisitService;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AdminVisitController extends Controller
