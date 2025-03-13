@@ -9,6 +9,7 @@ use App\Models\Question;
 use App\Models\Review;
 use App\Models\Role;
 use App\Models\Shop;
+use App\Models\Ticket;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -51,5 +52,9 @@ trait UserRelations
     public function questions(): HasMany
     {
         return $this->hasMany(Question::class);
+    }
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class);
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\v1\Admin\AdminCityController;
 use App\Http\Controllers\Api\v1\Admin\AdminCommentController;
 use App\Http\Controllers\Api\v1\Admin\AdminCommissionController;
 use App\Http\Controllers\Api\v1\Admin\AdminDiscountController;
+use App\Http\Controllers\Api\v1\Admin\AdminLadderController;
 use App\Http\Controllers\Api\v1\Admin\AdminLadderOrderController;
 use App\Http\Controllers\Api\v1\Admin\AdminMessageController;
 use App\Http\Controllers\Api\v1\Admin\AdminPostController;
@@ -17,6 +18,8 @@ use App\Http\Controllers\Api\v1\Admin\AdminReviewController;
 use App\Http\Controllers\Api\v1\Admin\AdminRoleController;
 use App\Http\Controllers\Api\v1\Admin\AdminShopController;
 use App\Http\Controllers\Api\v1\Admin\AdminStateController;
+use App\Http\Controllers\Api\v1\Admin\AdminTicketCategoryController;
+use App\Http\Controllers\Api\v1\Admin\AdminTicketController;
 use App\Http\Controllers\Api\v1\Admin\AdminUserController;
 use App\Http\Controllers\Api\v1\Admin\AdminWalletController;
 use App\Http\Controllers\Api\v1\Admin\AdminWalletTransactionController;
@@ -83,3 +86,8 @@ Route::apiResource("ladder-orders", AdminLadderOrderController::class)->except("
 Route::post("ladder-orders/{ladder_order}/show", [AdminLadderOrderController::class, "show"])->name("ladder-orders.show");
 Route::post("ladder-orders/{ladder_order}/cancel", [AdminLadderOrderController::class, "cancel"])->name("ladder-orders.cancel");
 Route::post("ladder-orders/{ladder_order}/complete", [AdminLadderOrderController::class, "complete"])->name("ladder-orders.complete");
+
+Route::apiResource("ticket-categories", AdminTicketCategoryController::class);
+Route::apiResource("tickets", AdminTicketController::class);
+Route::post("tickets/{ticket}/answer", [AdminTicketController::class, "answer"])->name("tickets.answer");
+Route::post("tickets/{ticket}/close", [AdminTicketController::class, "close"])->name("tickets.close");

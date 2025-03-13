@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\v1\User\UserProfileController;
 use App\Http\Controllers\Api\v1\User\UserQuestionController;
 use App\Http\Controllers\Api\v1\User\UserReviewController;
 use App\Http\Controllers\Api\v1\User\UserShopController;
+use App\Http\Controllers\Api\v1\User\UserTicketController;
 use App\Http\Controllers\Api\v1\User\UserWalletController;
 use App\Http\Controllers\Api\v1\User\UserWalletTransactionController;
 use App\Http\Controllers\Api\v1\User\UserWishlistController;
@@ -114,3 +115,6 @@ Route::post("advertise-orders/{advertise_order}/cancel", [UserAdsOrderController
 Route::apiResource("ladder-orders", UserLadderOrderController::class);
 Route::post("ladder-orders/{ladder_order}/cancel", [UserLadderOrderController::class, "cancel"])->name("ladder-orders.cancel");
 
+Route::apiResource("tickets", UserTicketController::class);
+Route::post("tickets/{ticket}/add-message", [UserTicketController::class, "addMessage"])->name("tickets.addMessage");
+Route::post("tickets/{ticket}/close", [UserTicketController::class, "close"])->name("tickets.close");
