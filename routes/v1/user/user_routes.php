@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\v1\User\UserBlockController;
 use App\Http\Controllers\Api\v1\User\UserCommentController;
 use App\Http\Controllers\Api\v1\User\UserDiscountController;
 use App\Http\Controllers\Api\v1\User\UserFollowController;
+use App\Http\Controllers\Api\v1\User\UserLadderOrderController;
 use App\Http\Controllers\Api\v1\User\UserMessageController;
 use App\Http\Controllers\Api\v1\User\UserPageController;
 use App\Http\Controllers\Api\v1\User\UserPostController;
@@ -109,4 +110,7 @@ Route::apiResource("wishlist", UserWishlistController::class)->except("update");
 
 Route::apiResource("advertise-orders", UserAdsOrderController::class);
 Route::post("advertise-orders/{advertise_order}/cancel", [UserAdsOrderController::class, "cancel"])->name("advertise-orders.cancel");
+
+Route::apiResource("ladder-orders", UserLadderOrderController::class);
+Route::post("ladder-orders/{ladder_order}/cancel", [UserLadderOrderController::class, "cancel"])->name("ladder-orders.cancel");
 

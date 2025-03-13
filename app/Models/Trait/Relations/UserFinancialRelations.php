@@ -4,6 +4,7 @@ namespace App\Models\Trait\Relations;
 
 use App\Models\AdvertiseOrder;
 use App\Models\Discount;
+use App\Models\LadderOrder;
 use App\Models\Order;
 use App\Models\Wallet;
 use App\Models\Wishlist;
@@ -45,5 +46,10 @@ trait UserFinancialRelations
     public function adsOrders(): HasMany
     {
         return $this->hasMany(AdvertiseOrder::class);
+    }
+
+    public function ladderOrders(): HasMany
+    {
+        return $this->hasMany(LadderOrder::class);
     }
 }

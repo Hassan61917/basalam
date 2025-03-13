@@ -32,4 +32,10 @@ class Shop extends AppModel
         return $builder->where('status', ShopStatus::Opened->value);
     }
 
+    public function isAvailable(): bool
+    {
+        $status = $this->status;
+        return $status == ShopStatus::Opened->value ||
+            $status == ShopStatus::InProcess->value;
+    }
 }

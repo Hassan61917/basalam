@@ -14,6 +14,10 @@ class Order extends AppModel
         "shop_id", "status", "total_price", "discount_code", "discount_price","address"
     ];
 
+    public function scopePaid(Builder $builder): Builder
+    {
+        return $builder->where("status", OrderStatus::Paid->value);
+    }
     public function scopeDraft(Builder $builder): Builder
     {
         return $builder->where("status", OrderStatus::Draft->value);
