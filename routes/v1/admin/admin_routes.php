@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\v1\Admin\AdminAdsController;
+use App\Http\Controllers\Api\v1\Admin\AdminAdsOrderController;
 use App\Http\Controllers\Api\v1\Admin\AdminBanController;
 use App\Http\Controllers\Api\v1\Admin\AdminCategoryController;
 use App\Http\Controllers\Api\v1\Admin\AdminCityController;
@@ -68,3 +70,9 @@ Route::apiResource("posts", AdminPostController::class);
 Route::apiResource("comments", AdminCommentController::class);
 
 Route::apiResource("wishlist", AdminWishlistController::class)->only("index", "show");
+
+Route::apiResource("advertises", AdminAdsController::class);
+Route::apiResource("advertise-orders", AdminAdsOrderController::class)->except("store");
+Route::post("advertise-orders/{advertise_order}/cancel", [AdminAdsOrderController::class, "cancel"])->name("advertise-orders.cancel");
+Route::post("advertise-orders/{advertise_order}/start", [AdminAdsOrderController::class, "start"])->name("advertise-orders.start");
+Route::post("advertise-orders/{advertise_order}/complete", [AdminAdsOrderController::class, "complete"])->name("advertise-orders.complete");

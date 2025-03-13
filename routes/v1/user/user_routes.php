@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\v1\Client\ClientOrderItemController;
 use App\Http\Controllers\Api\v1\Client\ClientQuestionController;
 use App\Http\Controllers\Api\v1\Client\ClientReviewController;
 use App\Http\Controllers\Api\v1\User\UseOrderController;
+use App\Http\Controllers\Api\v1\User\UserAdsOrderController;
 use App\Http\Controllers\Api\v1\User\UserBlockController;
 use App\Http\Controllers\Api\v1\User\UserCommentController;
 use App\Http\Controllers\Api\v1\User\UserDiscountController;
@@ -105,3 +106,7 @@ Route::post("/follows/{follow}/accept", [UserFollowController::class, "accept"])
 Route::post("/follows/{follow}/reject", [UserFollowController::class, "reject"])->name("follow.reject");
 
 Route::apiResource("wishlist", UserWishlistController::class)->except("update");
+
+Route::apiResource("advertise-orders", UserAdsOrderController::class);
+Route::post("advertise-orders/{advertise_order}/cancel", [UserAdsOrderController::class, "cancel"])->name("advertise-orders.cancel");
+

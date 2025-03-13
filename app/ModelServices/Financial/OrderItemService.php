@@ -62,13 +62,14 @@ class OrderItemService
         ]);
     }
 
-    public function cancel(OrderItem $item): void
+    public function cancel(OrderItem $item, ?int $amount = null): void
     {
+        $amount = $amount ?: $item->total_price;
         if (!$this->canCancel($item)) {
             throw new ModelException("item can not be canceled");
         }
         if ($item->status != OrderItemStatus::Waiting->value) {
-            $amount = $item->total_price - $item->discount_price;
+            $amount -= $item->discount_price;
             $this->walletService->deposit($item->user->wallet, $amount);
         }
         $item->updateStatus(OrderItemStatus::Cancelled);

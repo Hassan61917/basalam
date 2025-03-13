@@ -14,6 +14,14 @@ class Shop extends AppModel
         "category_id", "name", "description", "status"
     ];
 
+    public static function systemShop(): Shop
+    {
+        $admin = User::query()
+            ->whereHas("roles", fn($query) => $query->where("title", "admin"))
+            ->first();
+
+        return $admin->shop()->firstOrCreate(["name" => "system shop", "status" => ShopStatus::Opened->value]);
+    }
     public function scopeNotDraft(Builder $builder): Builder
     {
         return $builder->where("status","!=", ShopStatus::Draft->value);
@@ -23,4 +31,5 @@ class Shop extends AppModel
     {
         return $builder->where('status', ShopStatus::Opened->value);
     }
+
 }
