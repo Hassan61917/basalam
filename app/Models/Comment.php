@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\Likeable;
+use App\Models\Trait\With\WithLike;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Comment extends AppModel
+class Comment extends AppModel implements Likeable
 {
+    use WithLike;
     protected $fillable = [
         "post_id", "comment_id", "comment"
     ];

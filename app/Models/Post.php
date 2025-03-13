@@ -3,15 +3,17 @@
 namespace App\Models;
 
 use App\Enums\PostStatus;
+use App\Models\Interfaces\Likeable;
 use App\Models\Interfaces\Visitable;
+use App\Models\Trait\With\WithLike;
 use App\Models\Trait\With\WithVisit;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Post extends AppModel implements Visitable
+class Post extends AppModel implements Visitable, Likeable
 {
-    use WithVisit;
+    use WithVisit, WithLike;
     protected $fillable = [
         "title",
         "slug",

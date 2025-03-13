@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\Likeable;
+use App\Models\Trait\With\WithLike;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Review extends AppModel
+class Review extends AppModel implements Likeable
 {
+    use WithLike;
     protected $fillable = [
         "order_id", "rate", "body", "reply"
     ];

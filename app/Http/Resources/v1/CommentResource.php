@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class CommentResource extends AppJsonResource
 {
-    protected array $resources = [];
+    protected array $resources = [LikeCountResource::class];
 
     /**
      * Transform the resource into an array.

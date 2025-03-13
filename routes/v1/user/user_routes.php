@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\v1\User\UserCommentController;
 use App\Http\Controllers\Api\v1\User\UserDiscountController;
 use App\Http\Controllers\Api\v1\User\UserFollowController;
 use App\Http\Controllers\Api\v1\User\UserLadderOrderController;
+use App\Http\Controllers\Api\v1\User\UserLikeController;
 use App\Http\Controllers\Api\v1\User\UserMessageController;
 use App\Http\Controllers\Api\v1\User\UserPageController;
 use App\Http\Controllers\Api\v1\User\UserPostController;
@@ -125,3 +126,6 @@ Route::apiResource("reports", UserReportController::class)->except("update");
 
 Route::delete("visits/delete-all", [UserVisitController::class, "destroyAll"])->name("visits.delete-all");
 Route::apiResource("visits", UserVisitController::class)->except("update");
+
+Route::post("like", [UserLikeController::class, "like"])->name("like");
+Route::post("dislike", [UserLikeController::class, "dislike"])->name("dislike");

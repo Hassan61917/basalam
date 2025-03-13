@@ -4,6 +4,7 @@ namespace App\Models\Trait\Relations;
 
 use App\Models\Comment;
 use App\Models\Follow;
+use App\Models\Like;
 use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
@@ -61,5 +62,10 @@ trait UserSocialRelations
     public function visits():HasMany
     {
         return $this->hasMany(Visit::class);
+    }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
     }
 }

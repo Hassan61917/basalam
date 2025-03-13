@@ -20,8 +20,8 @@ class QuestionFactory extends AppFactory
         $product = Product::factory()->create();
         return [
             "user_id" => User::factory(),
-            "service_id" => $product->shop,
-            "item_id" => $product->id,
+            "shop_id" => $product->shop,
+            "product_id" => $product->id,
             "question" => $this->faker->sentence(),
             "answer" => $this->faker->text(),
         ];

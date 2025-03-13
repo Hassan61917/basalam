@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 
 class PostResource extends AppJsonResource
 {
-    protected array $resources = [VisitCountResource::class];
+    protected array $resources = [
+        VisitCountResource::class,
+        LikeCountResource::class
+    ];
     public function toArray(Request $request): array
     {
         return [

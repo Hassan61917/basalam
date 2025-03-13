@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\Likeable;
 use App\Models\Interfaces\Visitable;
 use App\Models\Trait\Relations\ProductRelations;
+use App\Models\Trait\With\WithLike;
 use App\Models\Trait\With\WithVisit;
 use Illuminate\Database\Eloquent\Builder;
 
-class Product extends AppModel implements Visitable
+class Product extends AppModel implements Visitable, Likeable
 {
     use ProductRelations,
-        WithVisit;
+        WithVisit, WithLike;
 
     protected $fillable = [
         "category_id","name", "description", "price", "available", "hidden"

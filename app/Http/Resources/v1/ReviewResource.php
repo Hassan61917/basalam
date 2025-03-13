@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ReviewResource extends AppJsonResource
 {
-    protected array $resources = [];
+    protected array $resources = [LikeCountResource::class];
 
     public function toArray(Request $request): array
     {
