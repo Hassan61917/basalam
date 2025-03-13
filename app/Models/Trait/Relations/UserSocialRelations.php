@@ -8,6 +8,7 @@ use App\Models\Message;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\UserBlock;
+use App\Models\Visit;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -56,5 +57,9 @@ trait UserSocialRelations
     {
         return $this->hasMany(Follow::class, "follow_id")
             ->where("accepted", true);
+    }
+    public function visits():HasMany
+    {
+        return $this->hasMany(Visit::class);
     }
 }

@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\v1\User\UserReportController;
 use App\Http\Controllers\Api\v1\User\UserReviewController;
 use App\Http\Controllers\Api\v1\User\UserShopController;
 use App\Http\Controllers\Api\v1\User\UserTicketController;
+use App\Http\Controllers\Api\v1\User\UserVisitController;
 use App\Http\Controllers\Api\v1\User\UserWalletController;
 use App\Http\Controllers\Api\v1\User\UserWalletTransactionController;
 use App\Http\Controllers\Api\v1\User\UserWishlistController;
@@ -121,3 +122,6 @@ Route::post("tickets/{ticket}/add-message", [UserTicketController::class, "addMe
 Route::post("tickets/{ticket}/close", [UserTicketController::class, "close"])->name("tickets.close");
 
 Route::apiResource("reports", UserReportController::class)->except("update");
+
+Route::delete("visits/delete-all", [UserVisitController::class, "destroyAll"])->name("visits.delete-all");
+Route::apiResource("visits", UserVisitController::class)->except("update");
