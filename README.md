@@ -1,66 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h1>api بک اند سایت مشابه با سلام به روش (tdd)به همراه تست </h1>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+ویژگی ها:
+<br>
+بخش نقش ها (مقام ها) :
+<br>
+برنامه میتوان نقش های متفاوت داشته باشد که با مدلور hasRole کنترل میشود فقط ادمین میتواند نقش ایجاد کند یا نقش های ارتقا دهد 
+<br>
+بخش مسدود کردن کاربران (Ban):
+<br>
+کاربران متخلف برای مدتی خاص میتواند مسدود شوند که در این مدت نمیتواند فعالیت داشته باشند 
+<br>
+نکته1: مدلور notban مسدود بودن کاربران را چک میکند 
+<br>
+نکته2:هر دفعه که کاربری مسدود میشود به طور خودکار مدت مسدودی 2 بار میشود که البنه دلخواه است 
+<br>
+بخش لوکیشن:
+<br>
+شامل استان و شهر میشود که در بخش فرانت فقط اگهی ها همان شهر را نمایش میدهد یوزر در پروفایل میتواند لوکینش را تغییر دهد
+<br>
+بخش یوزر پروفایل:
+<br>
+شامل نام شماره عکس و لوکیشن <br>
+بخش کیف پول:
+<br>
+تمام عملیات های مالی در برنامه با کبف پول انجام میشود
+<br>
+عملیات های کیف پول دارای یه تراکنش میباشند که شامل مبلغ کد منحر به فرد موجودی قبل و بعد و ...و توضیحات اختیاری میباشد
+<br>
+بعد از انجام تراکنش نوتیفییکش برای یوزر ارسال میشود
+<br>
+نکته 1:کیف پول میتوناد مسدود شود که در این صورت عملیات برداشت یا انتقال انجام پذیر نیست
+<br>
+نکته2:کیف پول شامل فیلد پسورد است که برای برداشت پول لازم است
+<br>
+بخش دسته بندی
+<br>:
+دسته بندی های سایت را مشخص میکند که میتوانند زیر گروه نیز داشته باشند<br>
 
-## About Laravel
+مثلا دسته بندی کالای دیجتال -> گوشی موبایل<br>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+بخش غرفه :<br>
+هر کاربر میتواند صاحب یک غرفه ایجاد کند  <br>
+نکته غرفه هایی که محصولی نداشته باشند نمایش داده نمیشود<br>
+نکته غرفه ها میتواند مسدود شوند<br>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+بخش محصولات :<br>
+کاربران میتواند محصولات به غرفه خودش اضافه کند <br>
+نکته محصولات میتواند مخفی یا غیرفعال باشند<br>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+بخش کمیسیون :<br>
+ادمین میتواند برای دسته بندی مختلف کمیسیون قرار دهد که پس از خرید از مبلغ کسر میشود
+نکته:کمیسیون شامل درصد و حداکثر مبلغ میشود
+مثال:اگر ما کمیسیون را 10 درصد قرار دهیم و حداکثر مبلغ را 100 قرار دهیم اگ کاربر بیشتر از 1000 خرید کند ما 100 کمیسیون میگیری در غیر این صورت 10 درصد مبغ خرید
 
-## Learning Laravel
+بخش خرید:<br>
+کاربر میتواند یه محصول خاص را خریداری کند <br>
+نکته:وجه بعد از اعلام رضایت کاربر مبلغ محصول منهای کمیسیون به کیف پول صاحب غرفه واریز میشود<br>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+بخش تجربه خرید:<br>
+کاربران میتواند بعد از خرید نظرشان ثبت کنند<br>
+نکته:قبل از کامل شدن خرید کاربر نمیتواند تجربه ثبت کند<br>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+بخش تخفیف :<br>
+کد تخفیف که میواند شامل برای یه یوزر خاص با همه ساخته شود <br>
+نکته:صاحبان عرفه نیز میتواندد تخفیف ثبت کنند ک فقط برای غرفه خودشان اعمال میشود<br>
+نکته:تختفیف میتواند شامل زمان شود مثلا 3 روز <br>
+نکته:تختفیف میاند مشروط باشد مثلا سفارش بالای 1000 <br>
+نکته:میتواند شامل درصد شود و محدودیت داشته باشد مثلا تا 10 درصد تختفیف تا سقف <br>50
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+بخش سوالات:<br>
+هر محصول میتواند سوالات داشته باشد که فقط صاحب غرفه مییتواند جواب دهد<br>
 
-## Laravel Sponsors
+بخش پیام ها:<br>
+کاربر میتواند پیام ارسال کند اگر مخاطب کاربر را مسدود نکرده باشد <br>
+فیلد seen_at بعد از دیده شدن پیام از طرف مخاصب مقدار دهی میشود<br>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+بخش خدمات رسانه های اجتماعی:<br>
+تمام کاربران میتواند یک صحفه داشته باشند در بخش social میتواند استفاده کنند<br>
+کاربر میاواند نظرات صفحه اش را ببند<br>
+صفحه میتواند خصوصی یا عمومی باشد
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+بخش پست:<br>
+کاربران میتواند در صفحه شان پست جدید اضافه کنند <br>
+نکته:کاربر میتواند پست را برنامه ریزی که در تاریخ خاص منتشر شود<br>
+کاربر میاواند نظرات صفحه اش را ببند<br>
 
-## Contributing
+بخش نظرات:<br>
+هر پست میتواند نظرات داشته باشد کاربران میتوانند وصاحب اگهی پاسخ برای نظر ارسال کنند <br>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+بخش follow:
+کاربر میتواند کاربران دیگر را دنبال کنند:
+نکته:اگز صفحه خصوصی باشد درخواست ارسال میشود در غیر این صورت صفحه دنبال میشود
 
-## Code of Conduct
+بخش wishlist:<br>
+کاربر میتواند محصولات های مورد علاق خودش را ذخیره کند<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+بخش تبلیغ:
+مدیر سایت میتواند در صفحات سایت بخشی را برای تبلیغ در نظر بگیرد و کاربران میتواند ان تبلیغ را فعال کنند
 
-## Security Vulnerabilities
+بخش نربان:<br>
+کاربران میتوانند با خرید بسته های نردبان غرفه های خودشان در ابتدای لیست غرفه ها مشاهد کنند <br>
+نکته:فقط 5 غرفه نمایش داده میشود و بقیه اگهی های نردبان به صف منتقل میشوند و بعد از اتمام نمایش اگهی قبلی نمایش داده میشوند<br>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+بخش تیکت:<br>
+کاربران میتاوند تیکت ارسال کنند و بعد از بستن تیکت به پشتبان امتیاز دهند<br>
 
-## License
+بخش گزارش :<br>
+کاربران میتواندد اگهی یوزر کامن را گزارش کنند <br>
+نکته:مدل report rule مشخص میکند که اگر ما تعدادی اگی در طول مدت مشخصی مثلا 1 روز دریافت کنیم یوزر را مسدود کنیم <br>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+بخش لایک:<br>
+کاربران میتواندد سوال یا نطرات را لایک کنند<br>
+
+<h1>http://localhost:8000/docs/api</h1>
